@@ -10,7 +10,7 @@ PIDFile={{ pid_file }}
 PermissionsStartOnly=true
 ExecStartPre=/usr/local/bin/mongos_pre.sh
 ExecStart=/usr/bin/mongos --quiet \
-    --config /etc/mongos.conf
+    --config /etc/mongos.conf {{mongos_additional_parameters}}
 LimitFSIZE=infinity
 LimitCPU=infinity
 LimitAS=infinity
