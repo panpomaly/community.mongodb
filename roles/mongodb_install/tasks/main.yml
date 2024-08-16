@@ -18,11 +18,13 @@
       - "{{ mongosh_package }}"  # variablized due to tls issue
       - "mongodb-org-mongos"
       - "mongodb-org-tools"
-    state: present
+    state: "{{ mongodb_package_state | d('present') }}"
   when: specific_mongodb_version is not defined
   register: _pkg
   until: _pkg is succeeded
   retries: 5
+  notify:
+    - Restart mongod service
   tags:
     - "mongodb"
     - "setup"
